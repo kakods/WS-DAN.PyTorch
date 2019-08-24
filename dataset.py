@@ -7,7 +7,7 @@ import re
 from PIL import Image
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset
-from torchvision import tensor
+from torch import tensor
 
 __all__ = ['CustomDataset']
 
