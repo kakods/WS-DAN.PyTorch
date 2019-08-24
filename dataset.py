@@ -12,7 +12,7 @@ __all__ = ['CustomDataset']
 
 config = {
     # e.g. train/val/test set should be located in os.path.join(config['datapath'], 'train/val/test')
-    'datapath': 'DATA_PATH',
+    'datapath': 'Bird/CUB_200_2011',
 }
 
 
@@ -55,7 +55,8 @@ class CustomDataset(Dataset):
 
         if self.phase != 'test':
             # filename of image should have 'id_label.jpg/png' form
-            label = int((self.data_list[item].split('.')[0]).split('_')[-1])  # label
+            #label = int((self.data_list[item].split('.')[0]).split('_')[-1])  # label
+            label = re.findall(r'([\w]+)_[\d]+_[\d]+.jpg$',self.data_list[item])
             return image, label
         else:
             # filename of image should have 'id.jpg/png' form, and simply return filename in case of 'test'
